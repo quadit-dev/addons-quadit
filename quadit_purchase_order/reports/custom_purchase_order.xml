@@ -2,8 +2,8 @@
 <openerp>
     <data>
         <template id="report_purchaseorder_document_custom"  inherit_id="purchase.report_purchaseorder_document">
-            <xpath expr="//div[@class='page']" position="replace">
-                <div class="page" style="font-family: Arial;">
+            <xpath expr="//div[hasclass('page')]" position="replace">
+                <div class="page">
                <div class="oe_structure"/>
             <div class="row">
                 <div class="col-xs-6">
@@ -19,7 +19,7 @@
                             t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
                     </div>
                 </div>
-                <div class="col-xs-5" style="background: #000">
+                <div class="col-xs-5" style="background-color:#D8D8D8">
                     <strong>Proveedor:</strong>
                     <div t-field="o.partner_id"
                         t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
@@ -118,10 +118,10 @@
         <br/>
  
             <div>
-                <div class="col-xs-4" style="border-top: 1px solid">
-                    <table>
+                <div class="col-xs-4" style=" border-top: 1px solid">
+                    <table width="100%">
                         <tr>
-                            <th>Autorizacion</th>
+                            <th style="text-align:center">Compras</th>
                         </tr>
                     </table>   
                 </div>
@@ -133,10 +133,44 @@
                 </table> 
             </div>
             <div>
-                <div class="col-xs-4" style="text-center; border-top: 1px solid">
+                <div class="col-xs-4" style=" border-top: 1px solid">
+                    <table width="100%">
+                        <tr>
+                            <th style="text-align:center">Finanzas</th>
+                        </tr>
+                    </table>   
+                </div>
+             </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        
+            <div>
+                <div class="col-xs-4">
                     <table>
                         <tr>
-                            <th>Visto bueno</th>
+                            <th></th>
+                        </tr>
+                    </table>   
+                </div>
+             </div> 
+
+            <div class="col-xs-4" style="border-top: 1px solid">
+               <table width="100%">
+                    <tr>
+                        <th style="text-align:center">Direccion</th>
+                    </tr>
+                </table> 
+            </div>
+
+            <div>
+                <div class="col-xs-4">
+                    <table>
+                        <tr>
+                            <th></th>
                         </tr>
                     </table>   
                 </div>
