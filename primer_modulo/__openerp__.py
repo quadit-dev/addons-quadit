@@ -18,7 +18,7 @@
         'bin': [],
     },
     'depends': [
-        'purchase','quadit_shipping_address'
+        'purchase',
     ],
     'data': [
         'reports/custom_purchase_order.xml',

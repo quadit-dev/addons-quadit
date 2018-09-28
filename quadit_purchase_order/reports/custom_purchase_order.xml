@@ -2,28 +2,21 @@
 <openerp>
     <data>
         <template id="report_purchaseorder_document_custom"  inherit_id="purchase.report_purchaseorder_document">
-            <xpath expr="//div[hasclass('page')]" position="replace">
+            <xpath expr="//div[@class='page']" position="replace">
                 <div class="page">
                <div class="oe_structure"/>
             <div class="row">
                 <div class="col-xs-6">
-                    <strong>Direccion de Envio:</strong>
-                    <div t-if="o.dest_address_id">
-                        <div t-field="o.dest_address_id"
-                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                    <strong>Direccion de envio:</strong>
+                    <div t-if="o.shipping_address">
+                    <p t-field="o.shipping_address"/>
                     </div>
 
-                    <div t-if="not o.dest_address_id and o.picking_type_id and o.picking_type_id.warehouse_id">
-                        <span t-field="o.picking_type_id.warehouse_id.name"/>
-                        <div t-field="o.picking_type_id.warehouse_id.partner_id"
-                            t-options='{"widget": "contact", "fields": ["address", "phone"], "no_marker": True, "phone_icons": True}'/>
-                    </div>
                 </div>
-                <div class="col-xs-5" style="background-color:#D8D8D8">
-                    <strong>Proveedor:</strong>
+                <div class="col-xs-5 col-xs-offset-1" style="background-color:#D8D8D8">
                     <div t-field="o.partner_id"
-                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
-                        <p t-if="o.partner_id.vat"><t t-esc="o.company_id.country_id.vat_label or 'TIN'"/>: <span t-field="o.partner_id.vat"/></p>
+                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                        <p t-if="o.partner_id.vat">VAT: <span t-field="o.partner_id.vat"/></p>
                 </div>
             </div>
 
@@ -104,6 +97,7 @@
                             <td class="text-right">
                                 <span t-field="o.amount_total"
                                     t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <p></p>
                             </td>
                         </tr>
                     </table>
@@ -161,7 +155,7 @@
             <div class="col-xs-4" style="border-top: 1px solid">
                <table width="100%">
                     <tr>
-                        <th style="text-align:center">Direccion</th>
+                        <th style="text-align:center">Gerencia</th>
                     </tr>
                 </table> 
             </div>
@@ -176,9 +170,18 @@
                 </div>
              </div>
 
+            <p t-field="o.notes"/> 
 
-            <p t-field="o.notes"/>
-<div class="oe_structure"/>
+            <div>
+             <tr t-foreach="o.partner_id.bank_ids" t-as="t">
+                 <td><span t-field="t.name"/></td>
+                     <td class="text-right">
+                  <!--  <span t-field="t.bank_ids" t-field-options='{"widget": "acc_number", "bank": "o.partner_bank"}'/> -->
+                    </td>
+                </tr> 
+            </div>
+            
+            <div class="oe_structure"/>
                 </div>
             </xpath>
         </template>
