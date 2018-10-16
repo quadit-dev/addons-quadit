@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <record id="mrp_workorder_tree_view" model="ir.ui.view">
+        <field name="name">MRP Work Order Tree with Sale Order</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workcenter_tree_view_inherit"/>
+        <field name="arch" type="xml">
+            <field name="state" position="before">
+                <field name="sale_id"/>
+                <field name="partner_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_production_workcenter_form_view_inherit" model="ir.ui.view">
+        <field name="name">MRP Work Order Form with Sale Order</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workcenter_form_view_inherit"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//page/group[1]" position="after">
+                <group string="Sale Information">
+                    <field name="sale_id"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+        <record id="mrp_bom_form_view_product_details" model="ir.ui.view">
+            <field name="name">mrp.bom.form.product_details</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>    
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[1]/field[@name='bom_line_ids']/tree/field[@name='product_qty']" position="after" >
+                    <field name="notes" />
+                </xpath> 
+            </field>
+        </record>
+
+</data>
+</openerp>
