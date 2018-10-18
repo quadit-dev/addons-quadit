@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="quadit_mrp_report" inherit_id="mrp.report_mrporder">
+    <xpath expr="//div[@class='page']/div[3]/div[3]" position="after">
+            <div class="col-3">
+                <strong>Descripcion</strong><br/>
+                <span t-field="o.sale_line_id"/>
+            </div>
+    </xpath>
+
+    <xpath expr="//table/tbody/t/t/t/t/tr/td[5]" position="after">
+        <td>
+            <t>
+                <strong>Descripcion</strong>
+            </t>
+            </td>
+   </xpath>
+</template>
+</odoo>
