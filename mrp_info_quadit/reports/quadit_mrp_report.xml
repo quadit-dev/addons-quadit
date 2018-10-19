@@ -8,12 +8,19 @@
             </div>
     </xpath>
 
-    <xpath expr="//table/tbody/t/t/t/t/tr/td[5]" position="after">
+    <xpath expr="//table/thead/tr/th[5]" position="after">
+            <th>
+                <strong>Observaciones</strong>
+
+            </th>       
+    </xpath>
+
+    <xpath expr="//table/tbody/t/tr[2]/td[5]" position="after">
         <td>
             <t>
-                <strong>Descripcion</strong>
+                <span t-esc="line.bom_line_id.notes"/>
             </t>
-            </td>
+        </td>
    </xpath>
 </template>
 </odoo>
