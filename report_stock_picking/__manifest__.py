@@ -3,8 +3,8 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    'name': 'inventory incident report',
-     'summary': 'Add ValidationError when picking not cheked',
+    'name': 'Inventory Incident Report',
+    'summary': 'Add custom format in stock picking ',
     'version': '12.0.1.0.0',
     'category': 'Inventory',
     'author': 'Quadit, ',
