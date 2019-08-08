@@ -1,23 +1,24 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Copyright 2019 Quadit, S.A. de C.V. - https://www.quadit.mx
+# Copyright 2019 Quadit (Gabriel López <Developer>)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
     'name': 'Validation Tranfers',
-    'version': '1.1',
-    'summary': '',
-    'description': "",
-    'website': '',
+    'summary': 'Add ValidationError when picking not cheked',
+    'version': '12.0.1.0.0',
+    'category': 'Warehouse Management',
+    'author': 'Quadit, ',
+    'website': 'https://www.quadit.mx',
+    'license': 'LGPL-3',
     'depends': ['stock'],
-    'category': 'Inventary',
-    'sequence': 13,
-    'demo': [
-    ],
+    'sequence': 501,
+    'demo': [],
     'data': [
         'stock_views.xml',
     ],
-    'qweb': [
+    'development_status': 'Beta',
+    'maintainers': [
+        'gabrielsnader',
     ],
     'installable': True,
-    'application': True,
-    'auto_install': False,
 }
