@@ -24,22 +24,22 @@
                 <div class="row">
                     <table class="table">
                         <tr style="border: 1px solid gray;">
-                            <td style="width:20%;padding:2px;padding-left: 9px;"><strong>Empresa:</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><span t-field="o.partner_id.name"/></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><strong>Fecha prevista:</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><span t-field="o.scheduled_date"/></td>
+                            <td style="width:20%;padding:2px;padding-left: 9px; font-size: 10px"><strong>Empresa:</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px; font-size: 10px;"><span t-field="o.partner_id.name"/></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px; font-size: 10px;"><strong>Fecha prevista:</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px; font-size: 10px;"><span t-field="o.scheduled_date"/></td>
                         </tr>
                         <br/>
                         <tr style="border: 1px solid gray;">
-                            <td style="width:20%;padding:2px;padding-left: 9px;"><strong>Tipo de operacion:</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><span t-field="o.picking_type_id.name"/></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><strong>Fecha efectiva:</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><span t-field="o.date_done"/></td>
+                            <td style="width:20%;padding:2px;padding-left: 9px; font-size: 10px;"><strong>Tipo de operacion:</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px; font-size: 10px;"><span t-field="o.picking_type_id.name"/></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px; font-size: 10px;"><strong>Fecha efectiva:</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px; font-size: 10px;"><span t-field="o.date_done"/></td>
                         </tr>
                         <br/>
                         <tr style="border: 1px solid gray;">
-                            <td style="width:20%;padding:2px;padding-left: 9px;"><strong>Documento origen:</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><span t-field="o.origin"/></td>
+                            <td style="width:20%;padding:2px;padding-left: 9px;font-size: 10px;"><strong>Documento origen:</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px;font-size: 10px;"><span t-field="o.origin"/></td>
                         </tr>
                     </table>
                 </div>
@@ -47,12 +47,12 @@
                 <div class="row">
                     <table class="table" style="text-align:center;">
                         <tr style="border: 1px solid gray;">
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><strong>Nota de credito</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><strong>Cambio fisico</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><strong>Incidencia</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><strong>Paqueteria</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><strong>Devolucion</strong></td>
-                            <td style="width:20%;padding:2px;padding-right: 9px;"><strong>Refacturacion</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px;font-size: 10px;"><strong>Nota de credito</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px;font-size: 10px;"><strong>Cambio fisico</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px;font-size: 10px;"><strong>Incidencia</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px;font-size: 10px;"><strong>Paqueteria</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px;font-size: 10px;"><strong>Devolucion</strong></td>
+                            <td style="width:20%;padding:2px;padding-right: 9px;font-size: 10px;"><strong>Refacturacion</strong></td>
                         </tr>
                         <tr>
                             <td style="width:20%;padding:2px;padding-right: 9px;border: 1px solid gray;"><span style="color: white;">........<br/>........<br/>........</span></td>
@@ -68,7 +68,7 @@
                 <br/>
                 <div class="row mb32 mt32">
                 <div class="col-3 text-left">
-                <div style="width: 95%; overflow: auto; font-size: 13px; color: #1a1a1a;background-color: #dddddd;border: 1px solid gray;" >
+                <div style="width: 95%; overflow: auto; font-size: 10px; color: #1a1a1a;background-color: #dddddd;border: 1px solid gray;" >
                     <strong>
                     <div style="width:20%;padding:2px;padding-left: 9px;float:left; text-align: center;">Producto</div>
                     <div style="text-align: center">Demanda inicial</div>
@@ -76,7 +76,7 @@
                     </strong>
                 </div>
                 <t t-foreach="o.move_ids_without_package" t-as="l">
-                    <div style="float: left; width: 95%; overflow: auto; font-size: 13px; color: #1a1a1a;border: 1px solid gray;" >
+                    <div style="float: left; width: 95%; overflow: auto; font-size: 10px; color: #1a1a1a;border: 1px solid gray;" >
                         <div style="width:20%;padding:2px;padding-left: 9px;float:left; text-align: center"><span t-field="l.product_id.name"/></div>
                         <div style="text-align: center"><span t-field="l.product_uom_qty"/></div>
                         <div style="float:right; text-align: center"><span t-field="l.quantity_done"/></div>
@@ -88,7 +88,7 @@
                 <br/>
                 <br/>
                 <br/>
-                <div style="border: 1px solid gray;text-align: left"><strong>Descripcion de incidencia:</strong>
+                <div style="font-size: 10px;border: 1px solid gray;text-align: left"><strong>Descripcion de incidencia:</strong>
                 <br/>
                 <br/>
                 <br/>
@@ -98,7 +98,7 @@
                 <br/>
                 <br/>
                 </div>
-                <div style="border: 1px solid gray;text-align: left"><strong>Accion de contencion:</strong>
+                <div style="font-size: 10px;border: 1px solid gray;text-align: left"><strong>Accion de contencion:</strong>
                 <br/>
                 <br/>
                 <br/>
@@ -113,10 +113,10 @@
                 <div class="row">
                     <table class="table" style="text-align:center;">
                         <tr style="border: 1px solid gray;">
-                            <td style="width:20%;padding:2px;padding-left: 9px;"><strong>Politica de entrega:</strong></td>
-                            <td style="width:20%;padding:2px;padding-center: 9px;"><span t-field="o.move_type"/></td>
-                            <td style="width:20%;padding:2px;padding-left: 9px;"><strong>Prioridad:</strong></td>
-                            <td style="width:20%;padding:2px;padding-center: 9px;"><span t-field="o.priority"/></td>
+                            <td style="width:20%;padding:2px;padding-left: 9px;font-size: 10px;"><strong>Politica de entrega:</strong></td>
+                            <td style="width:20%;padding:2px;padding-center: 9px;font-size: 10px;"><span t-field="o.move_type"/></td>
+                            <td style="width:20%;padding:2px;padding-left: 9px;font-size: 10px;"><strong>Prioridad:</strong></td>
+                            <td style="width:20%;padding:2px;padding-center: 9px;font-size: 10px;"><span t-field="o.priority"/></td>
                         </tr>
                     </table>
                 </div>
