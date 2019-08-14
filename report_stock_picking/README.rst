@@ -2,11 +2,11 @@
    :target: https://www.gnu.org/licenses/lgpl
    :alt: License: LGPL-3
 
-=========================
-Stock Validation
-=========================
+====================
+Report Stock Picking
+====================
 
-This module extends the functionality of odoo to support validation before clic on "Transfer" button.
+This module extends the functionality of odoo to support issues pdf format.
 
 Credits
 =======
@@ -14,7 +14,7 @@ Credits
 Contributors
 ------------
 * Gabriel López <gabriel.lopez@quadit.mx> (https://www.quadit.mx)
-* Lázaro Rodríguez <lazaro@quadit.mx> (https://www.quadit.mx)
+* Leticia González <leticia.gonzalez@quadit.mx> (https://www.quadit.mx)
 
 Do not contact contributors directly about support or help with technical issues.
 
