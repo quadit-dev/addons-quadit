@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="product_website_view_form_id">
+        <field name="name">product.website.view.form</field>
+        <field name="model">product.template</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <notebook>
+                <page string="Images" name="images">
+                    <group name="inventory">
+                        <field name="img_ids">
+                            <form>
+                                <field name="img_product" widget="image"/>
+                            </form>
+                        </field>
+                    </group>
+                </page>
+                <page string="PDFs" name="images">
+                    <group name="inventory">
+                        <field name="pdf_ids">
+                            <form>
+                                <field name="pdf_product"/>
+                            </form>
+                        </field>
+                    </group>
+                </page>
+                <page string="Txt" name="images">
+                    <group name="inventory">
+                        <field name="txt_ids">
+                            <form>
+                                <field name="txt_product"/>
+                            </form>
+                        </field>
+                    </group>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+</odoo>
