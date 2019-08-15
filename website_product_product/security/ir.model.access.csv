@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_product_image,access_product_product_image,model_product_product_image,base.group_user,1,1,1,1
+access_product_product_pdf,access_product_product_pdf,model_product_product_pdf,base.group_user,1,1,1,1
+access_product_product_text,access_product_product_text,model_product_product_text,base.group_user,1,1,1,1
+access_product_product_image,access_product_product_image,model_product_product_image,,1,1,1,1
+access_product_product_pdf,access_product_product_pdf,model_product_product_pdf,,1,1,1,1
+access_product_product_text,access_product_product_text,model_product_product_text,,1,1,1,1

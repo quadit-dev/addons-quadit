@@ -11,6 +11,9 @@
                 <page string="Images" name="images">
                     <group name="inventory">
                         <field name="img_ids">
+                            <tree>
+                                <field name="img_product"/>
+                            </tree>
                             <form>
                                 <field name="img_product" widget="image"/>
                             </form>
@@ -20,8 +23,13 @@
                 <page string="PDFs" name="images">
                     <group name="inventory">
                         <field name="pdf_ids">
+                            <tree>
+                                <field name="filename"/>
+                                <field name="pdf_product" filename="filename" widget="binary"/>
+                            </tree>
                             <form>
-                                <field name="pdf_product"/>
+                                <field name="filename"/>
+                                <field name="pdf_product" filename="filename" widget="binary"/>
                             </form>
                         </field>
                     </group>
@@ -29,6 +37,9 @@
                 <page string="Txt" name="images">
                     <group name="inventory">
                         <field name="txt_ids">
+                            <tree>
+                                <field name="txt_product"/>
+                            </tree>
                             <form>
                                 <field name="txt_product"/>
                             </form>

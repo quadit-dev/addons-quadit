@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="product_attachments" inherit_id="website_sale.product">
+        <xpath expr="//p[hasclass('text-muted')]" position="after">
+            <t t-if="pdfs">
+                <hr/>
+                <h5><strong>PDF:</strong></h5>
+                <t t-foreach="pdfs" t-as="pdf">
+                    <a t-att-href="'/pdf/download?pdf_id=%i' % int(pdf['id'])">
+                        <span t-esc="pdf['filename']" class="fa fa-download"/>
+                    </a>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>

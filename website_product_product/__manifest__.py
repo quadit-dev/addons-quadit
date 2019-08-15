@@ -1,22 +1,31 @@
-# -*- coding: utf-8 -*-
+# Copyright 2019 Quadit, S.A. de C.V. - https://www.quadit.mx
+# Copyright 2019 Quadit (Gabriel López <Developer>)
+# Copyright 2019 Quadit (Lázaro Rodríguez <Developer>)
+# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
 {
-    'name': 'Product on Website',
+    'name': 'Website product attachments',
+    'summary': 'Show product attachments on website product form',
     'version': '12.0.1.0.0',
-    'summary': '',
-    'description': "",
-    'website': '',
-    'depends': ['stock','web'],
-    'category': 'Inventary',
-    'sequence': 13,
-    'demo': [
-    ],
+    'category': 'Website',
+    'author': 'Quadit, ',
+    'website': 'https://www.quadit.mx',
+    'license': 'LGPL-3',
+    'depends': ['stock', 'website_sale'],
+    'sequence': 501,
+    'demo': [],
     'data': [
-        'product_website.xml',
+        'security/ir.model.access.csv',
+        'views/product_view.xml',
+        'views/template.xml'
     ],
-    'qweb': [
+    'development_status': 'Beta',
+    'maintainers': [
+        'kuro088'
+        'gabrielsnader',
     ],
+    'qweb': [],
     'installable': True,
-    'application': True,
+    'application': False,
     'auto_install': False,
 }

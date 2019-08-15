@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- css -->
+    <template id="report_styles" >
+        <xpath expr=".">
+            <t>
+                .header_{
+                    background-color: #FFFFFF;
+                    height: 110px;
+                    width: 100%;
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    border-bottom: 2px solid grey;
+                }
+                .footer_{
+                    background-color: #FFFFFF;
+                    height: 60px;
+                    width: 100%;
+                    position: absolute;
+                    left: 0px;
+                    color: #ffffff;
+                    border-top: 2px solid grey;
+                }
+
+                .address {
+                    color: black;
+                    font-size: 12px;
+                    float: right;
+                    width: 45%;
+                    text-align: right;
+                    margin-right: 5%;
+                    margin-top: 1px;
+                }
+                .text_header {
+                    color: grey;
+                    font-size: 12px;
+                    float: right;
+                    width: 35%;
+                    text-align: right;
+                    margin-right: 5%;
+                }
+                .txt_web {
+                    width: 50%;
+                    float: left;
+                    color: grey;
+                    font-size: 11px;
+                    margin-left: 10px;
+                    margin-top: 20px;
+                    text-align: center;
+                }
+                .txt_email {
+                    color: grey;
+                    font-size: 12px;
+                    float: right;
+                    width: 30%;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+                .pagination {
+                    color: grey;
+                    font-size: 11px;
+                    width: 35%;
+                    float: left;
+                    text-align: right;
+                }
+                .logo{
+                    float: left;
+                    width: 25%;
+                    height: 50px;
+                    margin-left: 30px;
+                    margin-top: 10px;
+                }
+                #emisor {
+                    font-size: 10px;
+                    width: 45%;
+                    float: left;
+                    overflow: auto;
+                    margin-left: 20px;
+                    margin-top: 10px;
+                }
+                #receptor {
+                    font-size: 10px;
+                    width: 45%;
+                    float: right;
+                    overflow: auto;
+                    margin-right: 20px;
+                    margin-top: 10px;
+                }
+                #headers-inv {
+                    font-size: 10px;
+                    width: 95%;
+                    float: left;
+                    background-color: #F5F5F5;
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                    margin-left: 20px;
+                    border-bottom: 1px solid gray;
+                }
+                .line_inv {
+                    float: left;
+                    width: 95%;
+                    overflow: auto;
+                    margin-bottom: 5px;
+                    border-bottom: 1px dotted gray;
+                    font-size: 10px;
+                    color: #1a1a1a;
+                    margin-left: 20px;
+                }
+                .txt_white {
+                    color: white;
+                }
+                .text_white {
+                    color: white;
+                }
+                #folio {
+                    font-size: 12px;
+                    width: 45%;
+                    float: left;
+                    overflow: auto;
+                    background-color: #F5F5F5;
+                    text-align: left;
+                    margin-left: 20px;
+                }
+                #sat{
+                    font-size: 10px;
+                    width: 95%;
+                    clear: left;
+                    float: left;
+                    margin-top: 10px;
+                    margin-left: 20px;
+                }
+                #pagare{
+                    font-size: 9px;
+                    width: 95%;
+                    clear: left;
+                    float: left;
+                    margin-top: 10px;
+                    margin-left: 20px;
+                }
+                #promissory-inv {
+                    width: 60%;
+                    margin-left: 20px;
+                    margin-top: 10px;
+                    font-size: 8px;
+                    float: left;
+                    text-align: justify;
+                }
+                #sign
+                {
+                    width: 35%;
+                    font-size: 11px;
+                    float: left;
+                    text-align: center;
+                    margin-top: 30px;
+                    margin-left: 10px;
+                }
+                #data-sat{
+                    font-size: 9px;
+                    width: 95%;
+                    float: left;
+                    margin-left: 20px;
+                }
+                #sellos {
+                    font-size: 8px;
+                    width: 95%;
+                    float: left;
+                    overflow: hidden;
+                    margin-left: 20px;
+                    margin-top: 5px;
+                    text-align: left;
+                }
+            </t>
+        </xpath>
+    </template>
+
+
+    <!-- Report template -->
+    <template id="invoice_pdf">
+        <t t-call="web.html_container">
+            <address>
+
+            </address>
+            <t t-foreach="docs" t-as="o">
+                <t t-if="not company">
+                        <!-- Multicompany -->
+                        <t t-if="company_id">
+                            <t t-set="company" t-value="company_id"/>
+                        </t>
+                        <t t-elif="o and 'company_id' in o">
+                            <t t-set="company" t-value="o.company_id.sudo()"/>
+                        </t>
+                        <t t-else="else">
+                            <t t-set="company" t-value="res_company"/>
+                        </t>
+                    </t>
+
+
+                    <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+                    <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id">
+
+                    <!-- page -->
+                    <div class="page">
+                        <span t-field="o.partner_id.vat" style="visibility: hidden;"/>
+                        <div name="reference">
+                            <h2></h2>
+                        </div>
+                        <div class="row mb32 mt32">
+                            <div class="col-3 text-left" style="font-size:10px;">
+                                <div >
+                                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" class="float-left" alt="Logo" height="47" width="180" style="margin-bottom: 10px; margin-top:0px; text-align:top;"/><br/>
+                                </div>
+                                <div class="col-12 text-left" style="font-size:10px; margin-top:60px; margin-left:-10px;">
+                                    <span><b>Receptor:</b><br/>
+                                    <span t-field="o.partner_id.name" /></span><br/>
+                                    <span><b>C.P.</b></span><span t-field="o.partner_id.zip" /><br/>
+                                    <span><b>Tel:</b></span><span t-field="o.partner_id.phone" /><br/>
+                                    <span><b>R.F.C.</b></span><span t-esc="o.partner_id.vat" /><br/>
+                                </div>
+                            </div>
+                            <div class="col-6 text-left" style="font-size:10px;">
+                               <t t-if="o.sign">
+                                        <div style = "font-size:11px; color:blue">
+                                            <span t-esc="o.company_emitter_id.partner_id.name"/><br/>
+                                        </div>
+                                        <span><b>Emisor:</b></span><br/>
+                                        <span t-field="o.address_issued_id.street" /> <span t-field="o.address_issued_id.street2" />
+                                        <span t-field="o.address_issued_id.city" /> <span t-field="o.address_issued_id.state_id.name" />
+                                        <span t-field="o.address_issued_id.country_id.name"/>
+                                        <span>C.P.</span><span t-field="o.address_issued_id.zip" />
+                                        <span>Tel: </span><span t-field="o.address_issued_id.phone" /><br/>
+                                        <span><b>R.F.C. </b></span><span t-esc="o.company_emitter_id.vat" /><br/>
+                                        <span><b>Regimen Fiscal:</b></span><span t-esc="get_regimen(o)"/><br/>
+
+
+                                </t>
+                                <t t-if="not o.sign">
+                                        <span><b>Emisor:</b><br/><span t-esc="o.company_emitter_id.partner_id.name" /></span><br/>
+                                        <span t-field="o.journal_id.address_invoice_company_id.street" />
+                                        <span t-field="o.journal_id.address_invoice_company_id.street2" />
+                                        <span t-field="o.journal_id.address_invoice_company_id.city" />
+                                        <span t-field="o.journal_id.address_invoice_company_id.state_id.name" />
+                                        <span t-field="o.journal_id.address_invoice_company_id.country_id.name"/>
+                                        <span>C.P.</span><span t-field="o.journal_id.address_invoice_company_id.zip" />
+                                        <span>Tel: </span><span t-field="o.journal_id.address_invoice_company_id.phone" /><br/>
+                                        <span><b>R.F.C. </b></span><span t-esc="o.company_emitter_id.vat" /><br/>
+                                        <span><b>Regimen Fiscal:</b></span><span t-esc="get_regimen(o)"/><br/>
+
+                                </t>
+
+                                    <div class="row mb32 mt32" style="margin-top:100px;">
+                                        <div class="col-12 text-left" style="font-size:10px;">
+                                            <span><b>Direccion de envio</b></span><br/>
+                                            <span t-field="o.partner_id.street" />
+                                            <span t-field="o.partner_id.street2" />
+                                            <span t-field="o.partner_id.city" />
+                                            <span t-field="o.partner_id.state_id.name" />
+                                            <span t-field="o.partner_id.country_id.name" /> <br/>
+                                            <span><b>Tel:</b></span><span t-field="o.partner_id.phone" /><br/><br/>
+                                            <span><b>Vendedor</b></span><span t-field="o.user_id.name" /><br/>
+
+
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-3 text-right">
+                                <span><b>Factura:</b> <br/><span t-field="o.number" /></span><br/>
+                            <div style="font-size:8px;">
+                                <span><b>Fecha y hora de emisión:</b><br/><span t-esc="get_fecha_emision(o)"/></span><br/>
+                                <span><b>Folio fiscal:</b><br/><span t-esc="o.cfdi_folio_fiscal"/></span><br/>
+                                <span><b>No. Serie Certificado SAT:</b><br/><span t-esc="o.cfdi_no_certificado"/></span><br/>
+                                <span><b>Fecha y Hora de certificación:</b><br/><span t-esc="o.cfdi_fecha_timbrado"/></span><br/>
+                                <span><b>VERSION:3.3</b></span><br/>
+                                <span><b>Tipo de comprobante:</b><br/><span t-esc="get_tipo_comprobante(o)"/></span><br/>
+                                <span><b>Uso del CFDI:</b><br/><span t-esc="get_uso_cfdi(o)"/></span><br/>
+                            </div>
+                            </div>
+                        </div>
+                        <div style="font-size: 9px; width: 95%; float: left; background-color: #F5F5F5; margin-top: 5x; margin-bottom: 10px; margin-left: 20px; border-bottom: 1px solid gray;">
+                            <div style="float:left; text-align: center; width:8%;">CÓDIGO</div>
+                            <div style="float:left; text-align: center; width:8%;">CVE.SAT</div>
+                            <div style="float:left; text-align: center; width:36%;">DESCRIPCIÓN</div>
+                            <div style="float:left; text-align: center; width:8%;">CANTIDAD</div>
+                            <div style="float:left; text-align: center; width:8%;">UNIDAD</div>
+                            <div style="float:left; text-align: center; width:8%;">CVE.SAT</div>
+                            <div style="float:left; text-align: right; width:8%;">P.UNITARIO</div>
+                            <div style="float:left; text-align: right; width:8%;">DESC %</div>
+                            <div style="float:left; text-align: right; width:8%;">IMPORTE</div>
+                        </div>
+
+                        <!-- Líneas -->
+                        <t t-foreach="get_invoice_line(o)" t-as="l">
+                            <div style="float: left; width: 95%; overflow: auto; margin-bottom: 5px; border-bottom: 1px dotted gray; font-size: 10px; color: #1a1a1a; margin-left: 20px;" >
+                                <div style="float:left; text-align: left; width:8%;"><span style="color: white;">.</span><span t-esc="l[0]"/></div>
+                                <div style="float:left; text-align: left; width:8%;"><span style="color: white;">.</span><span t-esc="l[7]"/></div>
+                                <div style="float:left; text-align: left; width:36%;"><span style="color: white;">.</span><span t-esc="l[1]"/></div>
+                                <div style="float:left; text-align: center; width:8%;"><span style="color: white;">.</span><span t-esc="l[2]"/><span style="color: white;">.</span></div>
+                                <div style="float:left; text-align: center; width:8%;"><span style="color: white;">.</span><span t-esc="l[3]"/><span style="color: white;">.</span></div>
+                                <div style="float:left; text-align: center; width:8%;"><span style="color: white;">.</span><span t-esc="l[8]"/><span style="color: white;">.</span></div>
+                                <div style="float:left; text-align: right; width:8%;"><span style="color: white;">.</span><span t-esc="l[4]"/></div>
+                                <div style="float:left; text-align: right; width:8%;"><span style="color: white;">.</span><span t-esc="l[6]"/></div>
+                                <div style="float:left; text-align: right; width:8%;"><span style="color: white;">.</span><span t-esc="l[5]"/></div>
+                            </div>
+                        </t>
+
+                        <!-- subtotal -->
+                        <div class="clearfix">
+                            <div id="total" class="row" style="font-size: 10px;">
+                                <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                                    <table class="table table-sm">
+                                        <tr class="border-black o_subtotal" style="">
+                                            <td><strong>Subtotal</strong></td>
+                                            <td class="text-right">
+                                                <span t-esc="get_subtotal(o)"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Descuentos</strong></td>
+                                            <td class="text-right">
+                                                <stpan t-esc="get_descuentos(o)"/>
+                                             </td>
+                                        </tr>
+                                        <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                            <tr style="">
+                                                <t t-if="len(o.tax_line_ids) == 1 and o.amount_untaxed == amount_by_group[2]">
+                                                    <td><span t-esc="amount_by_group[0]"/></td>
+                                                    <td class="text-right o_price_total">
+                                                        <span t-esc="amount_by_group[3]" />
+                                                    </td>
+                                                </t>
+                                                <t t-else="">
+                                                    <td>
+                                                        <span t-esc="amount_by_group[0]"/>
+                                                        <span>&amp;nbsp;<span>on</span>
+                                                            <t t-esc="amount_by_group[4]"/>
+                                                        </span>
+                                                    </td>
+                                                    <td class="text-right o_price_total">
+                                                        <span t-esc="amount_by_group[3]"/>
+                                                    </td>
+                                                </t>
+                                            </tr>
+                                        </t>
+                                        <tr class="border-black o_total">
+                                            <td><strong>Total</strong></td>
+                                            <td class="text-right">
+                                                <span t-esc="get_total(o)"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Cantidad con letra -->
+                        <div style="font-size: 10px; width: 95%; clear: left; float: left; margin-top: 10px; margin-left: 20px;">
+                            <span><b>Cantidad con letra:</b></span>
+                            <span t-esc="get_cantidad_letra(o)"/>
+                        </div>
+                        <!-- Moneda -->
+                        <div style="font-size: 10px; width: 95%; clear: left; float: left; margin-top: 10px; margin-left: 20px;">
+                            <span><b>Moneda:</b></span>
+                            <span t-esc="o.currency_id.name"/><br/>
+                            <span><b>Forma de pago:</b></span>
+                            <span t-field="o.forma_pago_id.name"/><br/>
+                            <span><b>Metodo de Pago:</b></span>
+                            <span t-esc="o.met_pago_id.name"/>
+                        </div>
+
+                        <div style="font-size: 10px; width: 95%; clear: left; float: left; margin-top: 10px; margin-left: 20px;">
+                            <div style="float:left; text-align: center; width:75%; background-color: #F5F5F5;">Notas</div>
+                        </div>
+                        <div  style="size:9;font-size: 9px; width: 95%; float: left; margin-left: 20px;" >
+                            <div style="float:left; text-align: center; width:75%;"><span t-esc="o.comment"/></div>
+                        </div>
+
+                        <div style="font-size: 8px; width: 95%; float: left; overflow: hidden; margin-left: 20px; margin-top: 5px; text-align: left;">
+                            <div style="float:left; width:25%;">
+                                <img t-att-src="'/report/barcode/QR/%s' % quote_plus('?') + keep_query(
+                                    re=o.company_emitter_id.vat, rr=o.partner_id.vat,
+                                    tt=0, id=o.cfdi_folio_fiscal)" style="height: 180px; width: 180px;"/>
+                            </div>
+                            <div style="float:left; width:70%; size:5; overflow: hidden;">
+                                <span><b>Sello digital CFDI: </b><span style="text-align: justify;" t-esc="o.cfdi_sello" /></span><br/>
+                                <span><b>Sello digital SAT: </b><span style="text-align: justify;" t-esc="get_cfdi_folio(o)" /></span><br/>
+                                <span><b>Cadena original: </b><span style="text-align: justify;" t-esc="o.cfdi_cadena_original" /></span><br/>
+                            </div>
+                            <div style="float:left; text-align: center; width:95%; background-color: #F5F5F5; margin-top: 10px; font-size: 11px; overflow: hidden; page-break-inside:avoid ;">
+                                Esto es una representación impresa de un CFDI | Versión 3.3 | Odoo
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- page -->
+            </t>
+        </t>
+    </template>
+
+        <!-- Define report node, name must be: module_name.template_id-->
+        <report
+            id="custom_invoice_pdf"
+            model="account.invoice"
+            string="Factura CFDI 3.3"
+            report_type="qweb-pdf"
+            attachment="(object.state in ('open','paid')) and (object.cfdi_folio_fiscal) and (object.sudo().company_emitter_id and (object.sudo().company_emitter_id.partner_id.vat + '_' + object.number + '.pdf'))"
+            name="account_invoice_custom_format.invoice_pdf"
+            file="account_invoice_custom_format.invoice_pdf"
+            attachment_use="True"
+            menu="True"
+        />
+
+        <!-- Define custom paper format -->
+        <record id="invoice_paperformat" model="report.paperformat">
+            <field name="name">Factura CFDI 3.3</field>
+            <field name="default" eval="True" />
+            <field name="format">Letter</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">15</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+            <field name="report_ids" eval="[(6, 0, [ref('custom_invoice_pdf')])]"/>
+         </record>
+
+</odoo>
