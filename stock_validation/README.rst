@@ -2,9 +2,9 @@
    :target: https://www.gnu.org/licenses/lgpl
    :alt: License: LGPL-3
 
-=========================
+=================
 Stock Validation
-=========================
+=================
 
 This module extends the functionality of odoo to support validation before clic on "Transfer" button.
 
