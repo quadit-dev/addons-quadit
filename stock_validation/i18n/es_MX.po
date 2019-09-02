@@ -1,0 +1,49 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* stock_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-02 16:25+0000\n"
+"PO-Revision-Date: 2019-09-02 11:25-0500\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_MX\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: stock_validation
+#: model:res.groups,name:stock_validation.group_validation
+msgid "Group for validate transfers"
+msgstr "Grupo que permite validar transferencias"
+
+#. module: stock_validation
+#: model_terms:ir.ui.view,arch_db:stock_validation.stock_validation_filter_view
+msgid "Payment Validated"
+msgstr "Pago Validado"
+
+#. module: stock_validation
+#: model:ir.model.fields,field_description:stock_validation.field_stock_picking__is_validate
+msgid "Payment Validated?"
+msgstr "¿Pago validado?"
+
+#. module: stock_validation
+#: model:ir.model,name:stock_validation.model_stock_picking
+msgid "Transfer"
+msgstr "Transferir"
+
+#. module: stock_validation
+#: model:ir.model.fields,field_description:stock_validation.field_stock_picking__validated_by
+msgid "Validated by"
+msgstr "Pago validado por"
+
+#. module: stock_validation
+#: code:addons/stock_validation/stock_picking_validation.py:23
+#, python-format
+msgid "You do not have permission to validate the transfer!"
+msgstr "¡Usted no tiene permiso para realizar la transferencia o la mercancía está pendiente de pago!"

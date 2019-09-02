@@ -2,7 +2,7 @@
 <!-- License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
 <odoo>
     <record model="res.groups" id="group_validation">
-        <field name="name">Grupo validación de transferencias</field>
+        <field name="name">Group for validate transfers</field>
     </record>
 
     <record model="ir.ui.view" id="stock_validation_id">
@@ -13,6 +13,7 @@
         <field name="arch" type="xml">
             <field name="origin" position="after">
                 <field name="is_validate" groups="stock_validation.group_validation"/>
+                <field name="validated_by"/>
             </field>
         </field>
     </record>
@@ -26,7 +27,7 @@
         <field name="arch" type="xml">
             <xpath expr="//search" position="inside">
                 <separator/>
-                <filter name="validate" string="Validate" domain="[('is_validate','=', 'True')]"/>
+                <filter name="is_validate" string="Payment Validated" domain="[('is_validate','=', 'True')]"/>
             </xpath>
         </field>
     </record>

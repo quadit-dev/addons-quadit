@@ -5,7 +5,7 @@
 
 {
     'name': 'Validation Tranfers',
-    'summary': 'Add ValidationError when picking not cheked',
+    'summary': 'Adding validation to allow picking transfers',
     'version': '12.0.1.0.0',
     'category': 'Warehouse Management',
     'author': 'Quadit, ',
